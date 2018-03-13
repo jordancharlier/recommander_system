@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+   
+
+    <title>Movie Recomandation</title>
+
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/iCss.css" rel="stylesheet">
+    <link href="static/css/justified-nav.css" rel="stylesheet">
+
+  </head>
+
+  <body ng-controller="HomeCtrl">
+    <script type="text/javascript" src="static/js/angular.js"></script>
+      
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script type="text/javascript" src="static/js/generalData.js"></script>
+      <script type="text/javascript" src="static/js/chartsGeneral.js"></script>
+
+    <div class="container">
+
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="masthead">
+        <h3 class="text-muted">Movie Recomandation</h3>
+
+        <nav>
+          <ul class="nav nav-justified">
+            <li class="active" ng-show="showHome"><a ng-click="home()">Home</a></li>
+	    <li ng-show="!showHome"><a ng-click="home()">Home</a></li>
+            <li class="active" ng-show="showGeneralData"><a ng-click="showUsersData()">Genral Data</a></li>
+	    <li ng-show="!showGeneralData"><a ng-click="showUsersData()">Genral Data</a></li>
+	    <li class="active" ng-show="showMovie"><a ng-click="showMoviesData()">Movie Data</a></li>
+            <li ng-show="!showMovie"><a ng-click="showMoviesData()">Movie Data</a></li>
+	    <li class="active" ng-show="showRecomandation"><a ng-click="recomandation()">Recomandation</a></li>
+            <li ng-show="!showRecomandation"><a ng-click="recomandation()">Recomandation</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      
+      <div ng-show="showHome" class="jumbotron">
+        <h1>Connection</h1>
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" name ="inputSpace" id="inputId" placeholder="Enter ID">
+          </div>
+          <button type="submit" class="btn btn-primary" ng-click="showUsersData()">Connect</button>
+        </form>
+      </div>
+      
+      
+      
+
+     
+      <div ng-show="showGeneralData" class="containerView" style="display: flex;flex-direction: column; width: 100%;height: 700px;padding-top:20px;">
+        <div style="display: flex;flex-direction: row;width:100%;height: 50%;">
+          <div style="width: 50%;height: 100%;">
+            <div id="sexe" style="min-width: 100%; height: 100%; max-width: 100%; margin: 0 auto"></div>
+          </div>
+          <div style="width: 50%;height: 100%;">
+            <div id="age" style="min-width: 100%; height: 100%; max-width: 100%; margin: 0 auto"></div>
+          </div>
+        </div>
+        <div style="display: flex;flex-direction: row;width:100%;height: 50%;">
+          <div style="width: 50%;height: 100%;">
+            <div id="map" style="min-width: 100%; height: 100%; max-width: 100%; margin: 0 auto"></div>
+          </div>
+          <div style="width: 50%;height: 100%;">
+            <div id="occup" style="min-width: 100%; height: 100%; max-width: 100%; margin: 0 auto"></div>
+          </div>
+        </div>
+      </div>
+
+  
+      
+
+     <div ng-show="showMovie" class="containerView" style="display: flex;flex-direction: column; width: 100%;height: 350tpx;padding-top:20px;">
+        <div style="display: flex;flex-direction: row;width:100%;height: 100%;">
+          <div style="width: 50%;height: 100%;">
+            <div id="numberCat2" style="min-width: 100%; height: 100%; max-width: 100%; margin: 0 auto;background-color:red;"></div>
+          </div>
+          <div style="width: 50%;height: 100%;">
+            <div id="numberCat" style="min-width: 100%; height: 100%; max-width: 100%; margin: 0 auto;"></div>
+          </div>
+        </div>
+
+      
+      <div ng-show="showRecomandation" class="containerView" style="display: flex;flex-direction: column; width: 100%;height: 700px;padding-top:20px;">
+        <div style="display: flex;flex-direction: row;width:100%;height: 100%;justify-content:center;overflow-y:scroll;">
+ <div class="bs-example" data-example-id="panel-without-body-with-table">
+            <div class="panel panel-default">
+                <div class="panel-heading">Machine list</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Genres</th>
+                            <th>Year</th>
+                            <th>Compatibility</th>
+                            <th>Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="movie in movies track by $index">
+                            <th scope="row">{{'{{$index+1}}'}}</th>
+                            <td>{{ '{{movie.Genres}}' }}</td>
+                            <td>{{ '{{movie.Year}}' }}</td>
+                            <td> {{'{{movie.Compatibility}}'}}</td>
+                            <td>{{'{{movie.Title}}'}}</td>
+							
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+	</div>
+      </div>
+      </div>
+
+      
+      <!-- Site footer -->
+      <footer class="footer">
+        <p>&copy; 2018 Master Big Data et fouille de donnée Paris 8</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    
+    
+    
+    
+  </body>
+</html>
+
